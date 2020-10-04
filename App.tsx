@@ -9,26 +9,15 @@
  */
 
 import React from 'react'
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TouchableOpacity,
-  StatusBar,
-} from 'react-native'
+import {SafeAreaView, StatusBar} from 'react-native'
+
+import StreakGame from './src/components/StreakGame'
 
 const App = () => (
   <>
     <StatusBar barStyle="dark-content" />
     <SafeAreaView>
-      <View>
-        <TouchableOpacity>
-          <Text aria-label="x">X</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text aria-label="o">O</Text>
-        </TouchableOpacity>
-      </View>
+      <StreakGame />
     </SafeAreaView>
   </>
 )
