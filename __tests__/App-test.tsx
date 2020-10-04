@@ -2,14 +2,14 @@
  * @format
  */
 
-import 'react-native'
 import React from 'react'
+import {render} from '@testing-library/react-native'
 
 import App from '../App'
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer'
+it('renders a grid of Xs and Os', () => {
+  const {getAllByText} = render(<App />)
 
-it('renders correctly', () => {
-  renderer.create(<App />)
+  getAllByText('X')
+  getAllByText('O')
 })
