@@ -9,6 +9,7 @@ const grid = [
   [null, Mark.X, null],
   [Mark.X, Mark.O, Mark.O],
 ]
+
 const StreakGame = () => {
   const [streak, setStreak] = useState(0)
 
