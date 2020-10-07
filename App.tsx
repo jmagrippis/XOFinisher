@@ -9,14 +9,20 @@
  */
 
 import React from 'react'
-import {SafeAreaView, StatusBar} from 'react-native'
+import {SafeAreaView, StatusBar, StyleSheet} from 'react-native'
 
 import StreakGame from './src/components/StreakGame'
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flexGrow: 1,
+  },
+})
 
 const App = () => (
   <>
     <StatusBar barStyle="dark-content" />
-    <SafeAreaView>
+    <SafeAreaView style={styles.safeArea}>
       <StreakGame />
     </SafeAreaView>
   </>

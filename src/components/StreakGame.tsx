@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native'
+import {View, Text} from 'react-native'
 
-const styles = StyleSheet.create({
-  cell: {
-    height: 32,
-    width: 32,
-  },
-})
+import Grid from './Grid'
+import {Mark} from './types'
 
+const grid = [
+  [Mark.X, Mark.O, null],
+  [null, Mark.X, null],
+  [Mark.X, Mark.O, Mark.O],
+]
 const StreakGame = () => {
   const [streak, setStreak] = useState(0)
 
@@ -21,21 +22,7 @@ const StreakGame = () => {
         <Text>Streak:</Text>
         <Text accessibilityRole="summary">{streak}</Text>
       </View>
-      <View>
-        <TouchableOpacity style={styles.cell}>
-          <Text aria-label="x">X</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text aria-label="o" style={styles.cell}>
-            O
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.cell}
-          accessibilityLabel="empty cell"
-          onPress={handlePress}
-        />
-      </View>
+      <Grid grid={grid} handlePress={handlePress} />
     </>
   )
 }

@@ -15,11 +15,11 @@ it('renders a grid of Xs and Os', () => {
 })
 
 it('increases my streak if I hit the correct empty cell', () => {
-  const {getByRole, getByA11yLabel} = render(<App />)
+  const {getByRole, getAllByA11yLabel} = render(<App />)
 
   expect(getByRole('summary').children).toEqual(['0'])
 
-  fireEvent.press(getByA11yLabel('empty cell'))
+  fireEvent.press(getAllByA11yLabel('empty cell')[0])
 
   expect(getByRole('summary').children).toEqual(['1'])
 })
