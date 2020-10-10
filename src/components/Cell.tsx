@@ -24,16 +24,16 @@ const styles = StyleSheet.create({
 })
 
 type Props = {
-  handlePress: (event: GestureResponderEvent) => void
+  onPress: (event: GestureResponderEvent) => void
   mark: Mark | null
 
   style?: StyleProp<ViewStyle>
 }
 
-const Cell = ({handlePress, mark}: Props) => (
+const Cell = ({onPress, mark}: Props) => (
   <TouchableOpacity
     accessibilityLabel={!mark ? 'empty cell' : undefined}
-    onPress={handlePress}
+    onPress={onPress}
     style={styles.cell}>
     {mark && (
       <Text style={styles.text} aria-label={`cell marked with "${mark}"`}>

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 })
 
 type Props = {
-  handlePress: (event: GestureResponderEvent) => void
+  handlePress: ({x, y}: {x: number; y: number}) => void
   grid: GridType
 }
 
@@ -43,7 +43,7 @@ const Grid = ({handlePress, grid}: Props) => (
               x < 2 && sharedStyles.borderRight,
             )}
             key={`cell ${x}-${y}`}>
-            <Cell mark={cell} handlePress={handlePress} />
+            <Cell mark={cell} onPress={() => handlePress({x, y})} />
           </View>
         ))}
       </View>
