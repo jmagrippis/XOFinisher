@@ -3,7 +3,7 @@
  */
 
 import React from 'react'
-import {render, fireEvent} from '@testing-library/react-native'
+import {render, fireEvent, waitFor} from '@testing-library/react-native'
 
 import App from '../App'
 
@@ -33,4 +33,17 @@ it('resets my streak if I hit an incorrect empty cell', () => {
   fireEvent.press(emptyCells[emptyCells.length - 1])
 
   expect(getByRole('summary').children).toEqual(['0'])
+})
+
+it('adds an X when I play on an empty cell, and gives me a new grid', async () => {
+  const {getAllByText, getAllByA11yLabel} = render(<App />)
+
+  const existingXCount = getAllByText('X').length
+
+  fireEvent.press(getAllByA11yLabel('empty cell')[0])
+
+  const newXCount = getAllByText('X').length
+  expect(newXCount).toBe(existingXCount + 1)
+
+  await waitFor(() => expect(getAllByText('X').length).toBeLessThan(newXCount))
 })

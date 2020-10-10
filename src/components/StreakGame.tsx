@@ -26,9 +26,15 @@ const StreakGame = () => {
   }
 
   useEffect(() => {
+    const timeout = setTimeout(() => {
+      setGrid(startingGrid)
+    }, 1000)
+
     if (getTicTacToeCoords(grid)) {
       setStreak((value) => value + 1)
     }
+
+    return () => clearTimeout(timeout)
   }, [grid])
 
   return (
