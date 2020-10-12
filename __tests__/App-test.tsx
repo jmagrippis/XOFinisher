@@ -47,3 +47,13 @@ it('adds an X when I play on an empty cell, and gives me a new grid', async () =
 
   await waitFor(() => expect(getAllByText('X').length).toBeLessThan(newXCount))
 })
+
+it('does not increase my streak more than once for a given grid', () => {
+  const {getByRole, getAllByA11yLabel} = render(<App />)
+
+  expect(getByRole('summary').children).toEqual(['0'])
+  getAllByA11yLabel('empty cell').forEach((emptyCell) => {
+    fireEvent.press(emptyCell)
+  })
+  expect(getByRole('summary').children).toEqual(['1'])
+})

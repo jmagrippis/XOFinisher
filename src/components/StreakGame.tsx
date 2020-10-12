@@ -1,41 +1,21 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {View, Text} from 'react-native'
-import {getTicTacToeCoords} from './getTicTacToeCoords'
+import {useMachine} from '@xstate/react'
 
 import Grid from './Grid'
-import {Mark} from './types'
-
-const startingGrid = [
-  [Mark.X, Mark.O, null],
-  [null, Mark.X, null],
-  [Mark.X, Mark.O, Mark.O],
-]
+import {
+  FinisherEvent,
+  ticTacToeFinisherMachine,
+} from './ticTacToeFinisherMachine'
 
 const StreakGame = () => {
-  const [streak, setStreak] = useState(0)
-  const [grid, setGrid] = useState(startingGrid)
+  const [current, send] = useMachine(ticTacToeFinisherMachine)
+
+  const {grid, streak} = current.context
 
   const handlePress = ({x, y}: {x: number; y: number}) => {
-    setGrid(
-      grid.map((row, rowY) =>
-        row.map((cell, cellX) =>
-          !cell && cellX === x && rowY === y ? Mark.X : cell,
-        ),
-      ),
-    )
+    send(FinisherEvent.MARK, {data: {x, y}})
   }
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setGrid(startingGrid)
-    }, 1000)
-
-    if (getTicTacToeCoords(grid)) {
-      setStreak((value) => value + 1)
-    }
-
-    return () => clearTimeout(timeout)
-  }, [grid])
 
   return (
     <>

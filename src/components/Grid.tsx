@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, StyleSheet, GestureResponderEvent, ViewStyle} from 'react-native'
+import {View, StyleSheet, ViewStyle} from 'react-native'
 
 import Cell from './Cell'
 import {sharedStyles} from './sharedStyles'
