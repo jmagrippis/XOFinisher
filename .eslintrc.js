@@ -1,6 +1,9 @@
 module.exports = {
   root: true,
-  extends: ['@react-native-community', 'prettier'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  extends: ['react-app', 'prettier'],
+  rules: {
+    'arrow-body-style': ['error'],
+    'object-shorthand': ['error'],
+    'react/jsx-curly-brace-presence': ['error'],
+  },
 }
